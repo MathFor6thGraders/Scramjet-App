@@ -1,0 +1,18 @@
+services:
+  - type: web
+    name: scramjet-app
+    runtime: docker
+    repo: https://github.com/MathFor6thGraders/Scramjet-App
+    plan: free # Change this if you are using a paid plan
+    buildFilter:
+      ignoredPaths:
+        - .dockerignore
+        - .gitignore
+        - .prettierignore
+        - .replit
+        - eslint.config.mjs
+        - package.json
+        - pnpm-lock.yaml
+        - prettier.config.js
+        - replit.nix
+        - .github/**

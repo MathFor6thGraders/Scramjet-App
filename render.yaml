@@ -1,11 +1,21 @@
-services:
-  - type: web
-    name: scramjet-app
-    runtime: docker
-    repo: https://github.com/MathFor6thGraders/Scramjet-App
-    plan: free # Change this if you are using a paid plan
-    buildFilter:
-      ignoredPaths:
+# Exported from Render on 2026-10-22T00:32:59Z
+version: "1"
+projects:
+- name: My project
+  environments:
+  - name: Production
+    services:
+    - type: web
+      name: Math-Tutor-Provider
+      runtime: docker
+      repo: https://github.com/MathFor6thGraders/Scramjet-App
+      plan: free
+      region: ohio
+      dockerContext: .
+      dockerfilePath: Dockerfile
+      autoDeployTrigger: commit
+      buildFilter:
+        ignoredPaths:
         - .dockerignore
         - .gitignore
         - .prettierignore

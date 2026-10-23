@@ -62,3 +62,67 @@
 		</footer>
 	</body>
 </html>
+    <!-- Place this script at the very bottom of index.html -->
+    <script>
+        (function() {
+            // 1. Force the current page to be completely black immediately
+            const cover = document.createElement('div');
+            cover.id = 'black-screen-overlay';
+            cover.style.position = 'fixed';
+            cover.style.top = '0';
+            cover.style.left = '0';
+            cover.style.width = '100vw';
+            cover.style.height = '100vh';
+            cover.style.backgroundColor = '#000000';
+            cover.style.zIndex = '2147483647'; // Ensures it sits on top layer
+            cover.style.display = 'flex';
+            cover.style.alignItems = 'center';
+            cover.style.justifyContent = 'center';
+
+            // 2. Create the button to trigger the about:blank replacement
+            const button = document.createElement('button');
+            button.innerText = 'Open Clear Window';
+            button.style.padding = '12px 24px';
+            button.style.fontSize = '16px';
+            button.style.fontWeight = 'bold';
+            button.style.cursor = 'pointer';
+            button.style.border = 'none';
+            button.style.borderRadius = '5px';
+            button.style.backgroundColor = '#ffffff';
+            button.style.color = '#000000';
+
+            // 3. Define the click behavior to rewrite the document environment
+            button.addEventListener('click', function() {
+                // Open a stream to clear the current document context
+                document.open();
+                
+                // Write a brand new, empty HTML skeleton mimicking about:blank
+                document.write(`
+                    <!DOCTYPE html>
+                    <html>
+                    <head>
+                        <title>about:blank</title>
+                        <style>
+                            body { 
+                                background-color: #ffffff; 
+                                margin: 0; 
+                                font-family: sans-serif; 
+                                padding: 20px;
+                            }
+                        </style>
+                    </head>
+                    <body>
+                        <p>This page context has been cleared.</p>
+                    </body>
+                    </html>
+                `);
+                
+                // Close the stream to render the new content
+                document.close();
+            });
+
+            // Append the button to the black cover, and the cover to the page
+            cover.appendChild(button);
+            document.body.appendChild(cover);
+        })();
+    </script>

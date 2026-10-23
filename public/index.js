@@ -47,11 +47,9 @@ form.addEventListener("submit", async (event) => {
 
 	const url = search(address.value, searchEngine.value);
 
-	let wispUrl =
-		(location.protocol === "https:" ? "wss" : "ws") +
-		"://" +
-		location.host +
-		"/wisp/";
+	// MODIFIED: Changed from local connection to a free, public community Wisp endpoint
+	let wispUrl = "wss://wisp.mercuryworkshop.xyz/wisp/";
+	
 	if ((await connection.getTransport()) !== "/libcurl/index.mjs") {
 		await connection.setTransport("/libcurl/index.mjs", [
 			{ websocket: wispUrl },
